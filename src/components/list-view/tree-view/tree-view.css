@@ -1,0 +1,49 @@
+.tree-view-container {
+    max-width: 370px;
+    margin-left: 100px;
+}
+
+.tree-categories {
+    text-align: left;
+    cursor: pointer;
+}
+
+.view-cotegory {
+    text-align: left;
+    margin-left: 30px;
+}
+
+.category,
+.view-image {
+    cursor: pointer;
+}
+
+.active-img {
+    color: white
+}
+
+.hide::before {
+    content: '+ ';
+}
+
+.show::before {
+    content: '- ';
+}
+
+.img-modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-modal__content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+}

@@ -1,0 +1,32 @@
+.pagination {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+    gap: 20px 20px;
+    justify-content: center;
+}
+
+.page-item {
+    border-radius: 100px;
+    list-style-type: none;
+    background: linear-gradient(21deg, #dd03e4, #5611ec);
+    cursor: pointer;
+}
+
+.active {
+    box-shadow: 5px 5px 5px 2px rgba(102, 31, 31, 0.8);
+}
+
+.page-item:hover {
+    background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
+    color: black;
+}
+
+.page-item a {
+    outline: none;
+    text-decoration: none;
+    color: beige;
+}
+
+.page-item a:hover {
+    color: black;
+}

@@ -1,0 +1,70 @@
+.list-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 40px 50px;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    width: 20px;
+    background: rgba(141, 163, 153, 190);
+    border-radius: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 20px;
+    border-radius: 100px;
+    height: 100px;
+    background: #777;
+}
+
+
+.card-container {
+    background:
+        linear-gradient(rgba(135, 60, 255, 0.2), rgba(135, 60, 255, 0.0) 80%),
+        linear-gradient(-45deg, rgba(120, 155, 255, 0.2) 25%, rgba(255, 160, 65, 0.2) 75%);
+    display: flex;
+    width: 300px;
+    border-radius: 20px;
+    padding: 20px;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s, visibility 0s;
+}
+
+.hidden-img {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 0s 1s;
+}
+
+.close {
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.card-picture {
+    width: 200px;
+}
+
+.card-text {
+    margin-top: 10px;
+    width: 300px;
+    text-align: left;
+}
+
+.category-text,
+.filesize-text,
+.date-text,
+.name-text {
+    border-bottom: 1px solid;
+    margin-bottom: 5px;
+}
