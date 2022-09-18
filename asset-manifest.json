@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pictures-in-two-forms/static/css/main.df083262.css",
+    "main.js": "/pictures-in-two-forms/static/js/main.1453a698.js",
+    "index.html": "/pictures-in-two-forms/index.html",
+    "main.df083262.css.map": "/pictures-in-two-forms/static/css/main.df083262.css.map",
+    "main.1453a698.js.map": "/pictures-in-two-forms/static/js/main.1453a698.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df083262.css",
+    "static/js/main.1453a698.js"
+  ]
+}
