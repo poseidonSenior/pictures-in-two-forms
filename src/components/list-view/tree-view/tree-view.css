@@ -8,14 +8,28 @@
     cursor: pointer;
 }
 
-.view-cotegory {
+.view-category {
     text-align: left;
     margin-left: 30px;
 }
 
 .category,
-.view-image {
+.img-thumbnail {
     cursor: pointer;
+}
+
+.thumbnail-wrapper {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.img-thumbnail {
+    width: 40px;
+}
+
+.text-img {
+    margin-left: 10px;
 }
 
 .active-img {

@@ -11,7 +11,7 @@ export function TreeView(props) {
                 <div onClick={() => setExpandCategories(!expandCategories)} className={`tree-categories ${expandCategories ? 'show' : 'hide'}`} >Categories</div>
                 <div style={{ display: expandCategories ? "block" : "none" }}>
                     {treeData && treeData.map((elements, index) =>
-                        <div className='view-cotegory' key={index}>
+                        <div className='view-category' key={index}>
                             <CotegoryView elements={elements} />
                         </div>
                     )}
@@ -31,23 +31,24 @@ function CotegoryView(props) {
             </div>
             {elements.source.map((elem, index) =>
                 <div style={{ display: expandCategory ? "block" : "none", paddingLeft: 30 }} key={index}>
-                    <ImageTextView image={elem.image} />
+                    <ImageThumbnail image={elem.image} />
                 </div>
             )}
         </div>
     )
 }
 
-function ImageTextView(props) {
+function ImageThumbnail(props) {
     const [viewImage, setViewImage] = useState(false);
     const { image } = props
     return (
-        <>
-            <div onClick={() => setViewImage(!viewImage)} className={`view-image ${viewImage && 'active-img'}`}>
+        <div className='thumbnail-wrapper'>
+            <img onClick={() => setViewImage(!viewImage)} className='img-thumbnail' src={`http://contest.elecard.ru/frontend_data/${image}`} />
+            <div className={`text-img ${viewImage && 'active-img'}`}>
                 {image.split('/')[1]}
             </div>
             {viewImage && <ImageModal image={image} active={viewImage} setActive={setViewImage} />}
-        </>
+        </div>
     )
 }
 

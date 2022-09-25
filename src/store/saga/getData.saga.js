@@ -12,8 +12,6 @@ function* getData() {
         const data = yield call(fetchDataFromApi)
         const json = yield call(() => new Promise(res => res(data.json())))
         yield put(setData(json))
-        localStorage.setItem('data', JSON.stringify(json))
-        localStorage.setItem('sort', 'name')
     }
     catch (error) {
         yield put(errorData(error))

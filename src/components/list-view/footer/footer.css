@@ -10,8 +10,6 @@
     bottom: 0;
     color: #fff;
     z-index: 1;
-    /* display: flex;
-    justify-content: center; */
 }
 
 .footer-btn {
@@ -46,4 +44,5 @@
 
 .footer-btn:disabled {
     background-color: gray;
+    cursor: default;
 }

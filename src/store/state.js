@@ -4,7 +4,7 @@ const defaultState = {
     data: [],
     loading: false,
     error: undefined,
-    sort: 'name',
+    sort: undefined,
 }
 
 

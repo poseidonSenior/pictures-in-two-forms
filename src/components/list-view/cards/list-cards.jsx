@@ -17,12 +17,14 @@ export function ListCards(props) {
 function Card(props) {
     const { data, deleteCard } = props;
     const [isDeleted, setIsDeleted] = useState(false)
+
     const returnViewState = () => {
         setIsDeleted(true)
         setTimeout(() => {
             setIsDeleted(false)
         }, 1000);
     }
+
     return (
         <div className={`card-container ${isDeleted ? 'hidden-img' : ''}`}>
             <div className="card">

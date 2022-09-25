@@ -17,6 +17,7 @@ export function ListView() {
     const [currentPage, setCurrentPage] = useState(1)
     const [picturePerPage] = useState(10)
     const [viewSelect, setViewSelect] = useState(true)
+    const [isBbuttonPressed, setIsBbuttonPressed] = useState(false)
 
 
     const dispatch = useDispatch()
@@ -58,14 +59,18 @@ export function ListView() {
     }
     const treeData = treeViewData();
 
+
     useEffect(() => {
-        if (localStorage.getItem('data')) {
-            dispatch(setData(JSON.parse(localStorage.getItem('data'))));
-            dispatch(setSort(localStorage.getItem('sort')));
-        } else {
+        if (!viewSelect) {
             dispatch(fetchData())
+        } else {
+            if (localStorage.getItem('data')) {
+                dispatch(setData(JSON.parse(localStorage.getItem('data'))));
+            } else {
+                dispatch(fetchData())
+            }
         }
-    }, [])
+    }, [viewSelect])
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
@@ -80,8 +85,11 @@ export function ListView() {
     }
 
     const returnAllCards = () => {
-        dispatch(fetchData())
-        dispatch(setSort('name'))
+        if (localStorage.getItem('data')) {
+            dispatch(fetchData())
+            localStorage.removeItem('data')
+            setIsBbuttonPressed(true)
+        }
     }
 
     const dataSorting = (sortId) => {
@@ -91,31 +99,29 @@ export function ListView() {
                 return (
                     dispatch(setData(newDataCategory)),
                     dispatch(setSort(sortId)),
-                    localStorage.setItem('data', JSON.stringify(newDataCategory)),
-                    localStorage.setItem('sort', 'category')
+                    setIsBbuttonPressed(false)
                 )
             case 'timestamp':
                 const newDataTimestamp = [...data].sort((a, b) => a.timestamp - b.timestamp)
                 return (
                     dispatch(setData(newDataTimestamp)),
                     dispatch(setSort(sortId)),
-                    localStorage.setItem('data', JSON.stringify(newDataTimestamp)),
-                    localStorage.setItem('sort', 'timestamp')
+                    setIsBbuttonPressed(false)
                 )
             case 'name':
-                const newDataImage = [...data].sort((a, b) => new Intl.Collator('en-US').compare(a.image, b.image))
+                const newDataImage = [...data].sort((a, b) => new Intl.Collator('en-US').compare(a.image.split('/')[1].split('.jpg')[0], b.image.split('/')[1].split('.jpg')[0]))
                 return (
                     dispatch(setData(newDataImage)),
                     dispatch(setSort(sortId)),
-                    localStorage.setItem('data', JSON.stringify(newDataImage))),
-                    localStorage.setItem('sort', 'name')
+                    setIsBbuttonPressed(false)
+                )
             case 'filesize':
                 const newDataFilesize = [...data].sort((a, b) => a.filesize - b.filesize)
                 return (
                     dispatch(setData(newDataFilesize)),
                     dispatch(setSort(sortId)),
-                    localStorage.setItem('data', JSON.stringify(newDataFilesize))),
-                    localStorage.setItem('sort', 'filesize')
+                    setIsBbuttonPressed(false)
+                )
             default:
                 return null
         }
@@ -136,10 +142,10 @@ export function ListView() {
 
     return (
         <div className='list-view-wrapper'>
-            <Header dataSorting={dataSorting} sort={sort} viewSelect={viewSelect} isViewSelected={isViewSelected} />
+            <Header dataSorting={dataSorting} sort={sort} viewSelect={viewSelect} isViewSelected={isViewSelected} isBbuttonPressed={isBbuttonPressed} />
             {viewSelect ? !loading ? <Loader /> : <div>
                 <ListCards internalData={currentData} deleteCard={deleteCard} />
-                <Pagination picturePerPage={picturePerPage} totalPicturies={data.length} paginate={paginate} currentPage={currentPage} />
+                <Pagination picturePerPage={picturePerPage} totalPicturies={data.length} paginate={paginate} currentPage={currentPage} internalData={currentData} />
             </div> : <TreeView treeData={treeData} />}
             <Footer returnAllCards={returnAllCards} viewSelect={viewSelect} />
         </div>
